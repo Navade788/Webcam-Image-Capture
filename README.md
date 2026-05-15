@@ -43,10 +43,81 @@ Resize the frame and rotate it using OpenCV functions, then display the processe
 ## 💻 Program
 
 ### Developed By:
-**Name:** ____________________________  
+**Name:** S.NAVADEEP 
 
-### Register No:
-____________________________  
+### Register No: 212224230180
+
+# Import required libraries
+import cv2
+import matplotlib.pyplot as plt
+from IPython.display import clear_output
+import time
+cap = cv2.VideoCapture(0)
+
+# Read a single frame
+ret, frame = cap.read()
+
+if ret:
+    # Write the frame as a JPG file
+    cv2.imwrite("captured_image.jpg", frame)
+    print("Image saved as captured_image.jpg")
+else:
+    print("Failed to capture image")
+# Display the captured frame using Matplotlib
+if ret:
+    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    
+    plt.imshow(frame_rgb)
+    plt.title("Captured Image")
+    plt.axis('off')
+    plt.show()
+# To Display the video
+for i in range(30):
+    ret, frame = cap.read()
+
+    if not ret:
+        break
+
+    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+    clear_output(wait=True)
+    plt.imshow(frame_rgb)
+    plt.title("Live Video")
+    plt.axis('off')
+    plt.show()
+
+# Display the video by resizing the window
+
+for i in range(30):   # runs only 30 frames
+    ret, frame = cap.read()
+
+    if not ret:
+        break
+
+    resized = cv2.resize(frame, (640, 480))
+    resized_rgb = cv2.cvtColor(resized, cv2.COLOR_BGR2RGB)
+
+    clear_output(wait=True)
+    plt.imshow(resized_rgb)
+    plt.title("Resized Video (640x480)")
+    plt.axis('off')
+    plt.show()
+# Rotate and display the video
+
+for i in range(30):   # runs only 30 frames
+    ret, frame = cap.read()
+
+    if not ret:
+        break
+
+    rotated = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
+    rotated_rgb = cv2.cvtColor(rotated, cv2.COLOR_BGR2RGB)
+
+    clear_output(wait=True)
+    plt.imshow(rotated_rgb)
+    plt.title("Rotated Video (90°)")
+    plt.axis('off')
+    plt.show()
 
 ---
 
